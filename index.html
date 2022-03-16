@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Далер ака может договоримся?</title>
+</head>
+
+<body>
+    <section class="max-width">
+        <header>
+            <h1>Dashboard</h1>
+            <button>Добавить задачу</button>
+            <button>sort</button>
+        </header>
+        <main>
+            <div class="links">
+                <p href="#">Показать задачи как:</p>
+                <p class='active' data-what="tabl">Таблица</p>
+                <p class=' ' data-what="plitka">Плитка</p>
+            </div>
+            <div class="title">
+                <ul>
+                    <li>Заголовок задачи</li>
+                    <li>Описание задачи</li>
+                    <li>Дата</li>
+                    <li>Время</li>
+                    <li>Выполнено</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+            <div class="greed" id="main__el">
+                <div class="item">
+                    <p class="name">Переписать проект на Vue 3</p>
+                    <p class="des">Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
+                        molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto</p>
+                    <p class="data">21.10.21</p>
+                    <p class="time">14:31</p>
+                    <p class="complirted bad">Не выполнено</p>
+                </div>
+                <div class="line"></div>
+            </div>
+        </main>
+    </section>
+
+</body>
+<script src="./main.js"></script>
+
+</html>
