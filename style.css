@@ -12,10 +12,11 @@
     --grey: #979797
 }
 
-.greed {
+.plitka {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     margin: 0 auto;
+    grid-gap: 23px;
 }
 
 body {
@@ -133,4 +134,22 @@ ul li:nth-child(5) {
 
 .midle {
     color: #007FFF;
+}
+.complirted{
+    width: 95px;
+}
+.plitca{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+    margin: 0 auto;
+}
+
+.blokeplitka{
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    box-sizing: border-box;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 11px;
+    padding: 24px;
 }
