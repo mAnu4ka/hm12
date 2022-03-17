@@ -56,8 +56,11 @@ let arr = [{
 let links = document.querySelectorAll('p[data-what]')
 let greed = document.querySelector('#main__el')
 let atribute
+let course_modal = document.querySelector('.course-modal')
+let course_create = document.querySelector('.course-modal-mobil')
+let bg_modal = document.querySelector('.bg-modal')
 let title = document.querySelector('.title')
-
+let body = document.querySelector('body')
 const CreateElement = (meaning, arr) => {
     greed.innerHTML = ' '
     for (const obj of arr) {
@@ -108,7 +111,6 @@ CreateElement('tabl', arr)
 let blokes = document.querySelectorAll('.item')
 let descriptions = document.querySelectorAll('.des')
 let lines = document.querySelectorAll('#line')
-console.log(lines);
 
 const swap = () => {
     for (let item of links) {
@@ -119,7 +121,8 @@ const swap = () => {
             atribute = item.getAttribute('data-what')
             chek(atribute)
             swaplinks(atribute)
-            sord(atribute)
+            sordplus(atribute)
+            sordminuse(atribute)
         }
     }
 }
@@ -152,7 +155,7 @@ const remove = (whatdo, removegreed) => {
     }
 }
 
-const sord = (atribute) => {
+const sordplus = (atribute) => {
     let arr_sorted = []
     arr_sorted = arr.sort((data1, data2) => {
         obj1 = data1.date.split('.').map(str => parseInt(str))
@@ -166,22 +169,106 @@ const sord = (atribute) => {
         else
             return (obj1[1] - obj2[1])
     });
-    let arr_sorted2 = []
-    arr_sorted2 = arr.sort((data1, data2) => {
-        obj1 = data1.date.split('.').map(str => parseInt(str))
-        obj2 = data2.date.split('.').map(str => parseInt(str))
-
-        if (obj1[1] == obj2[1])
-            if (obj1[0] == obj2[0])
-                return (obj1[2] - obj2[2])
-        else
-            return (obj2[0] - obj1[0])
-        else
-            return (obj2[1] - obj1[1])
-    });
-console.log();
     CreateElement(atribute, arr_sorted)
 }
 
+const sordminuse = (atribute) => {
+    let arr_sorted2 = []
+
+    arr_sorted2 = arr.sort((data1, data2) => {
+        obj2 = data1.date.split('.').map(str => parseInt(str))
+        obj1 = data2.date.split('.').map(str => parseInt(str))
+
+        if (obj1[1] == obj2[1])
+            if (obj1[0] == obj2[0])
+                return (obj2[2] - obj1[2])
+        else
+            return (obj1[0] - obj2[0])
+        else
+            return (obj1[1] - obj2[1])
+    });
+    CreateElement(atribute, arr_sorted2)
+}
+let arrplesholder = ['Заголовок','Описание','Время (type=time)','Время (type=date)','Тип задачи (select - option - new/progress/done)']
+let srord = ['pluse','minuse']
+const createmobile = (value,input) =>{
+    course_create.innerHTML = ' '
+    let inputmobail
+    let h1mobil = document.createElement('h1')
+    let buton = document.createElement('button')
+    h1mobil.innerText = value
+    buton.classList.add('create')
+    buton.innerText = 'Добавить'
+    course_create.append(h1mobil)
+    if (value == "create") {
+        for (let i = 0; i < input; i++) {
+            inputmobail = document.createElement('input')
+            inputmobail.setAttribute('type','text')
+            inputmobail.setAttribute('placeholder',arrplesholder[i])
+            course_create.append(inputmobail)            
+        }
+    }else if (value == "sort"){
+        for (let i = 0; i < input; i++) {
+            inputmobail = document.createElement('input')
+            inputmobail.setAttribute('type','checkbox')
+            let pmobil = document.createElement('p')
+            pmobil.innerText = `sord${srord[i]}`
+            inputmobail.before(pmobil)
+            course_create.append(inputmobail)            
+        }
+    }
+    course_create.append(buton)
+    let butensclose = document.querySelectorAll('.create')
+    anim(butensclose)
+}
+
+const showModal = (width, haight,value,input) => {
+    bg_modal.style.display = "block"
+    course_modal.style.display = "flex"
+    body.style.overflow = 'hidden'
+    course_modal.style.width = width
+    course_modal.style.height = haight
+    setTimeout(() => {
+        bg_modal.style.opacity = "1"
+        course_modal.style.opacity = "1"
+    }, 100);
+
+    setTimeout(() => {
+        course_modal.classList.add('mobail-modal')
+    }, 150);
+
+    createmobile(value,input)
+}
+
+const closeModal = () => {
+    bg_modal.style.opacity = "0"
+    course_modal.style.opacity = "0"
+    course_modal.style.width = "0px"
+    course_modal.style.height = '0px'
+    body.style.overflow = 'scroll'
+    setTimeout(() => {
+        bg_modal.style.display = "none"
+        course_modal.style.display = "none"
+        course_modal.classList.remove('mobail-modal')
+    }, 100);
+}
+const anim = (a) => {
+    let butns = document.querySelectorAll('button[data-but]')
+    for (const but of butns) {
+        but.onclick = () => {
+            let value = but.getAttribute('class')
+            let width = but.getAttribute('data-with')
+            let haight = but.getAttribute('data-haight') 
+            let input = but.getAttribute('data-input')
+            showModal(width,haight,value,input)
+        }
+    }
+    for (const but of a) {
+        but.onclick = ()=>{
+            closeModal()
+        }
+    }
+}
+anim([])
 
 swap()

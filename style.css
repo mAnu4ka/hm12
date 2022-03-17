@@ -72,7 +72,8 @@ main {
 
 p[data-what] {
     cursor: pointer;
-    transition:  .12s cubic-bezier(0.4, 0, 1, 1);;
+    transition: .12s cubic-bezier(0.4, 0, 1, 1);
+    ;
 }
 
 .active {
@@ -135,16 +136,18 @@ ul li:nth-child(5) {
 .midle {
     color: #007FFF;
 }
-.complirted{
+
+.complirted {
     width: 95px;
 }
-.plitca{
+
+.plitca {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
     margin: 0 auto;
 }
 
-.blokeplitka{
+.blokeplitka {
     background: #FFFFFF;
     border: 1px solid #D8D8D8;
     box-sizing: border-box;
@@ -152,4 +155,66 @@ ul li:nth-child(5) {
     flex-direction: column;
     gap: 11px;
     padding: 24px;
+}
+
+.course-modal {
+    display: none;
+    width: 0px;
+    height: 0px;
+    background-color: white;
+    border-radius: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .2s ease;
+    opacity: 0
+}
+
+.course-modal-mobil {
+    width: 100%;
+    height: 100%;
+    padding: 56px 97px;
+    grid-gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-modal-mobil h1 {
+    margin-bottom: 32px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+}
+
+.course-modal-mobil input {
+    width: 100%;
+    padding: 19px 25px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.course-modal-mobil button {
+    width: 100%;
+    padding: 19px 25px;
+    background: #007FFF;
+    color: #FFFFFF;
+    border-radius: 10px;
+
+}
+
+.bg-modal {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, .5);
+    transition: .2s ease;
+    backdrop-filter: blur(7px);
 }
