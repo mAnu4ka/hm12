@@ -171,7 +171,7 @@ ul li:nth-child(5) {
     opacity: 0
 }
 
-.course-modal-mobil {
+.course-modal-mobil form{
     width: 100%;
     height: 100%;
     padding: 56px 97px;
@@ -180,7 +180,7 @@ ul li:nth-child(5) {
     flex-direction: column;
 }
 
-.course-modal-mobil h1 {
+.course-modal-mobil form h1 {
     margin-bottom: 32px;
     font-style: normal;
     font-weight: 700;
@@ -189,15 +189,24 @@ ul li:nth-child(5) {
     text-align: center;
 }
 
-.course-modal-mobil input {
+.course-modal-mobil form input {
     width: 100%;
     padding: 19px 25px;
     background: #FFFFFF;
     border: 1px solid #000000;
     border-radius: 10px;
 }
+.course-modal-mobil form select{
+    width: 100%;
+    padding: 19px 25px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+.course-modal-mobil{
+    width: 100%;
+}
 
-.course-modal-mobil button {
+.course-modal-mobil form button {
     width: 100%;
     padding: 19px 25px;
     background: #007FFF;
