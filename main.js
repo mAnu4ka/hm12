@@ -3,7 +3,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '21-10-21',
+        date: '21.10.21',
         time: `14:31`,
         complirted: 'no',
     },
@@ -12,7 +12,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '21-10-21',
+        date: '21.10.21',
         time: `14:31`,
         complirted: 'yes',
     },
@@ -21,7 +21,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '10-10-21',
+        date: '10.10.21',
         time: `14:31`,
         complirted: 'litel bit',
     }, {
@@ -29,7 +29,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '23-10-20',
+        date: '23.10.20',
         time: `14:31`,
         complirted: 'no',
     },
@@ -38,7 +38,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '12-10-20',
+        date: '12.10.20',
         time: `14:31`,
         complirted: 'no',
     },
@@ -47,7 +47,7 @@ let arr = [{
         name: 'Переписать проект на Vue 3',
         des: `Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit
      molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto`,
-        date: '23-10-21',
+        date: '23.10.21',
         time: `14:31`,
         complirted: 'no',
     },
@@ -159,8 +159,8 @@ const remove = (whatdo, removegreed) => {
 const sordplus = (atribute) => {
     let arr_sorted = []
     arr_sorted = arr.sort((data1, data2) => {
-        obj1 = data1.date.split('-').map(str => parseInt(str))
-        obj2 = data2.date.split('-').map(str => parseInt(str))
+        obj1 = data1.date.split('.').map(str => parseInt(str))
+        obj2 = data2.date.split('.').map(str => parseInt(str))
 
         if (obj1[1] == obj2[1])
             if (obj1[0] == obj2[0])
@@ -177,8 +177,8 @@ const sordminuse = (atribute) => {
     let arr_sorted2 = []
 
     arr_sorted2 = arr.sort((data1, data2) => {
-        obj2 = data1.date.split('-').map(str => parseInt(str))
-        obj1 = data2.date.split('-').map(str => parseInt(str))
+        obj2 = data1.date.split('.').map(str => parseInt(str))
+        obj1 = data2.date.split('.').map(str => parseInt(str))
 
         if (obj1[1] == obj2[1])
             if (obj1[0] == obj2[0])
@@ -228,7 +228,6 @@ const createmobile = (value, input, text) => {
                 }
                 form.append(select)
             }
-            console.log(i);
             form.append(inputmobail)
         }
         inputmobail.remove()
@@ -236,15 +235,17 @@ const createmobile = (value, input, text) => {
         for (let i = 0; i < input; i++) {
             inputmobail = document.createElement('input')
             inputmobail.setAttribute('type', 'radio')
+            inputmobail.setAttribute('name', 'sord')
+            inputmobail.setAttribute('value',srord[i])
+            inputmobail.setAttribute('id', 'unite')
             let pmobil = document.createElement('p')
             pmobil.innerText = `sord${srord[i]}`
-            inputmobail.before(pmobil)
-            form.append(inputmobail)
+            form.append(inputmobail, pmobil)
         }
     }
     form.append(buton)
     anim()
-    REGEX()
+    REGEX(value)
 }
 
 const showModal = (width, haight, value, input, text) => {
@@ -292,9 +293,10 @@ const anim = (butensclose) => {
 }
 
 
-const REGEX = () => {
+const REGEX = (value) => {
     let counter_have_to
     let counter = 0
+    let Create_New_Task
     let regexes = {
         email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         number: /^[0-9]+$/,
@@ -321,15 +323,15 @@ const REGEX = () => {
             p.innerText = 'Ведите все правельно'
         }
     }
+
     form.onsubmit = () => {
         event.preventDefault()
-        let Create_New_Task = {}
         let fm = new FormData(form)
         fm.forEach((a, b) => {
-            Create_New_Task[a] = b
+            Create_New_Task = {}
+
             let field = form.querySelector('*[name=' + b + ']')
             counter_have_to = form.querySelectorAll('*[name]').length
-
             if (field.getAttribute('data-required') !== null) {
                 if (field.value.trim().length == 0) {
                     set_field_error(field, 'bad')
@@ -351,31 +353,42 @@ const REGEX = () => {
                 Create_New_Task[b] = a
                 counter++
                 return
-
+                
             } else {
                 set_field_success(field, 'nice')
                 Create_New_Task[b] = a
+                console.log(Create_New_Task);
                 counter++
                 return
             }
-
-
         })
         if (counter == counter_have_to) {
             let butensclose = document.querySelectorAll('.create')
             for (const but of butensclose) {
                 but.onclick = () => {
-                    Create_New_Task[3]
-                    closeModal()
-                    arr.push(Create_New_Task);
                     let claas = greed.getAttribute('class')
-                    console.log(claas);
-                    CreateElement(claas, arr)
+                    closeModal()
+                    if (Create_New_Task.sord == 'minuse') {
+                        sordminuse(claas)
+                    }
+                    else if (Create_New_Task.sord == 'pluse'){
+                        sordplus(claas)
+                    }else{
+                        arr.push(Create_New_Task);
+                        console.log(arr);
+                        CreateElement(claas, arr)
+                    }
                 }
             }
         }
     }
+
 }
+
+
+
+
+
 
 
 anim([])
